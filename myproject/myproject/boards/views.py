@@ -1,6 +1,8 @@
 #from django.http import HttpResponse
-from django.shortcuts import render
-from .models import Board
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Board, Topic, Post
+from django.contrib.auth.models import User
+from .forms import NewTopicForm
 
 # Create your views here.
 def home(request):
@@ -18,5 +20,40 @@ def home(request):
 
     #UPDATE
     boards=Board.objects.all()
-    return render(request, 'home.html', {'boards':boards})
+    return render(request,'home.html',{'boards':boards})
+    
 
+#Creando los topics.
+def board_topics(request,pk):
+    #try:
+      board=Board.objects.get(pk=pk)
+    #except Board.DoesNotExist:
+      return render(request,'topics.html',{'board':board})
+    
+
+#Creando el nuevo topic.
+def new_topic(request, pk):
+  board=get_object_or_404(Board, pk=pk)
+  user=User.objects.first()
+  
+  if request.method =='POST':
+    #subject=request.POST['subject']
+    #message=request.POST['message']
+    
+    form=NewTopicForm(request.POST)
+    if form.is_valid():
+      #topic=form.save(commit=False)
+      #topic.board=board
+      #topic.starter=user
+      topic.save
+      #post=Post.objects.create(
+      #  message=form.cleaned_data.get('message'),
+      #  topic=topic,
+      #  created_by=user
+      #)
+    
+    return redirect('board_topics', pk=board.pk)
+  else:
+    form=NewTopicForm()
+  
+  return render(request, 'new_topic.html', {'board':board, 'form':form})
