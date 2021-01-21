@@ -39,8 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
+    'widget_tweaks',
+    'accounts',
     'boards',
-    'widget_tweaks'
+    
 ]
 
 MIDDLEWARE = [
@@ -130,3 +132,11 @@ STATICFILES_DIRS = [
 ]
 
 ROOT_URLCONF = 'myproject.urls'
+
+LOGOUT_REDIRECT_URL = 'home'
+
+LOGIN_REDIRECT_URL = 'home'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+LOGIN_URL = 'login'

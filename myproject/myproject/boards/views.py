@@ -37,20 +37,20 @@ def new_topic(request, pk):
   user=User.objects.first()
   
   if request.method =='POST':
-    #subject=request.POST['subject']
-    #message=request.POST['message']
+    subject=request.POST['subject']
+    message=request.POST['message']
     
     form=NewTopicForm(request.POST)
     if form.is_valid():
-      #topic=form.save(commit=False)
-      #topic.board=board
-      #topic.starter=user
-      topic.save
-      #post=Post.objects.create(
-      #  message=form.cleaned_data.get('message'),
-      #  topic=topic,
-      #  created_by=user
-      #)
+      topic=form.save(commit=False)
+      topic.board=board
+      topic.starter=user
+      topic.save()
+      post=Post.objects.create(
+        message=form.cleaned_data.get('message'),
+        topic=topic,
+        created_by=user
+      )
     
     return redirect('board_topics', pk=board.pk)
   else:
