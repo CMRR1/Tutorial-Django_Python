@@ -3,7 +3,7 @@ from django.test import TestCase
 from django.urls import resolve, reverse
 from ..forms import NewTopicForm
 from ..models import Board, Post, Topic
-from ..views import new_topic
+from ..views import new_topic, TopicListView
 
 #Test para la vista de los topics.
 class NewTopicTests(TestCase):
@@ -78,3 +78,9 @@ class NewTopicTests(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertFalse(Topic.objects.exists())
         self.assertFalse(Post.objects.exists())
+        
+class BoardTopicsTests(TestCase):
+    # ...
+    def test_board_topics_url_resolves_board_topics_view(self):
+        view = resolve('/boards/1/')
+        self.assertEquals(view.func.view_class, TopicListView)

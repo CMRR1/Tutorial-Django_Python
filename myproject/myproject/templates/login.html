@@ -1,8 +1,11 @@
 <!--Es un login, no hay mucho que explicar-->
-% extends 'base_accounts.html' %}
+{% extends 'base_accounts.html' %}
+<html>
+  <head>
+  {% block title %}Log in to Django Boards{% endblock %}
+ </head>
 
-{% block title %}Log in to Django Boards{% endblock %}
-
+ <body>
 {% block content %}
   <div class="row justify-content-center">
     <div class="col-lg-4 col-md-6 col-sm-8">
@@ -28,3 +31,5 @@
     </div>
   </div>
 {% endblock %}
+</body>
+</html>
