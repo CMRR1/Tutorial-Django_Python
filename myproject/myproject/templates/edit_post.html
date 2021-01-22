@@ -1,11 +1,13 @@
 <!--Vista que sirve para editar el post y listo.-->
 {% extends 'base.html' %}
-
 {% load static %}
+<html>
+  <head>
+    {% block title %}Edit post{% endblock %}
+  </head>
 
-{% block title %}Edit post{% endblock %}
-
-{% block stylesheet %}
+  <body>
+    {% block stylesheet %}
   <link rel="stylesheet" href="{% static 'css/simplemde.min.css' %}">
 {% endblock %}
 
@@ -31,3 +33,9 @@
     <a href="{% url 'topic_posts' post.topic.board.pk post.topic.pk %}" class="btn btn-outline-secondary" role="button">Cancel</a>
   </form>
 {% endblock %}
+  </body>
+</html>
+
+
+
+

@@ -1,10 +1,12 @@
 <!-- Vista para crear un nuevo topic -->
 {% extends 'base.html' %}
 {% load widget_tweaks %}
-
-{% block title %}Start a New Topic{% endblock %}
-
-{% block breadcrumb %}
+<html>
+  <head>
+    {% block title %}Start a New Topic{% endblock %}
+  </head>
+  <body>
+    {% block breadcrumb %}
   <li class="breadcrumb-item"><a href="{% url 'home' %}">Boards</a></li>
   <li class="breadcrumb-item"><a href="{% url 'board_topics' board.pk %}">{{ board.name }}</a></li>
   <li class="breadcrumb-item active">New Topic</li>
@@ -18,3 +20,7 @@
   <button type="submit" class="btn btn-info font-weight-bold">Post</button>
 </form>
 {% endblock %}
+  </body>
+</html>
+
+

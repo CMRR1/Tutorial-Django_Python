@@ -1,17 +1,19 @@
 <!-- Vista de los post de los Topics -->
 {% extends 'base.html' %}
-
 {% load static %}
+<html>
+  <head>
+    {% block title %}{{ topic.subject }}{% endblock %}
 
-{% block title %}{{ topic.subject }}{% endblock %}
-
-{% block breadcrumb %}
+    {% block breadcrumb %}
   <li class="breadcrumb-item"><a href="{% url 'home' %}">Boards</a></li>
   <li class="breadcrumb-item"><a href="{% url 'board_topics' topic.board.pk %}">{{ topic.board.name }}</a></li>
   <li class="breadcrumb-item active">{{ topic.subject }}</li>
 {% endblock %}
+  </head>
 
-{% block content %}
+  <body>
+    {% block content %}
 
   <div class="mb-4">
     <a href="{% url 'reply_topic' topic.board.pk topic.pk %}" class="btn btn-info font-weight-bold" role="button">Reply</a>
@@ -49,5 +51,13 @@
       </div>
     </div>
   {% endfor %}
+  {% endblock %}
+</body>
+</html>
 
-{% endblock %}
+
+
+
+
+
+

@@ -1,8 +1,12 @@
+<!--Info de la cuenta/usuario/sesion-->
 {% extends 'base.html' %}
+<html>
+  <head>
+    {% block title %}My account{% endblock %}
+  </head>
 
-{% block title %}My account{% endblock %}
-
-{% block breadcrumb %}
+  <body>
+    {% block breadcrumb %}
   <li class="breadcrumb-item active">My account</li>
 {% endblock %}
 
@@ -17,3 +21,7 @@
     </div>
   </div>
 {% endblock %}
+  </body>
+</html>
+
+
