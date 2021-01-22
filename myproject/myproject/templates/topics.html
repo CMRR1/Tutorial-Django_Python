@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load humanize %}
+{% load i18n %}
 <html>
   <head>
     {% block title %}
@@ -15,7 +16,7 @@
 
     {% block content %}
       <div class="mb-4">
-        <a href="{% url 'new_topic' board.pk %}" class="btn btn-primary">New Topic</a>
+        <a href="{% url 'new_topic' board.pk %}" class="btn btn-info btn-rounded font-weight-bold">New Topic</a>
      </div>
 
       <table class="table mb-4">
@@ -45,7 +46,7 @@
               {% endif %}
             </small>
           </td>
-          <td class="align-middle">{{ topic.starter.username }}</td>
+          <td class="align-middle font-weight-bold">{{ topic.starter.username }}</td>
           <td class="align-middle">{{ topic.replies }}</td>
           <td class="align-middle">{{ topic.views }}</td>
           <td class="align-middle">{{ topic.last_updated|naturaltime }}</td>
@@ -56,43 +57,42 @@
   </body>
  
   <footer>
-<nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-end">
-    {% if topics.has_previous %}
-    <li class="page-item disabled">
-      <a class="page-link" href="?page={{ topics.previous_page_number }}">Previous</a>
-    </li>
-    {% else %}
-        <li class="page-item disabled">
-          <span class="page-link">Previous</span>
-        </li>
-      {% endif %}
-      {% for page_num in topics.paginator.page_range %}
-      {% if topics.number == page_num %}
-        <li class="page-item active">
-          <span class="page-link">
-            {{ page_num }}
-            <span class="sr-only">(current)</span>
-          </span>
-        </li>
-      {% else %}
-        <li class="page-item">
-          <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
-        </li>
-      {% endif %}
-    {% endfor %}
-    {% if topics.has_next %}
-    <li class="page-item">
-      <a class="page-link" href="?page={{ topics.next_page_number }}">Next</a>
-    </li>
-  {% else %}
-    <li class="page-item disabled">
-      <span class="page-link">Next</span>
-    </li>
-  {% endif %}
-  </ul>
-</nav>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        {% if topics.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ topics.previous_page_number }}">Previous</a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+          </li>
+        {% endif %}
+        {% for i in topics.paginator.page_range %}
+          {% if topics.number == i %}
+            <li class="page-item active" aria-current="page">
+              <span class="page-link">
+                {{ i }}
+                <span class="sr-only">(current)</span>
+              </span>
+            </li>
+          {% else %}
+            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if topics.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ topics.next_page_number }}">Next</a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
   </footer>
   {% endblock %}
+
 </html>
 

@@ -10,6 +10,8 @@ from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+
+
 # Create your views here.
 def home(request):
   #  boards = Board.objects.all()
@@ -161,3 +163,13 @@ class PostListView(ListView):
         queryset = self.topic.posts.order_by('created_at')
         return queryset
       
+      
+      
+#En vista que el pagination no me sirvio, me e visto en la tarea de
+#hacer mi propio pagination buscado de internet.
+def index(request):
+    topics = Topic.objects.all() #queryset containing all topics we just created
+    paginator = Paginator(topics, 3)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request=request, template_name="templates/topics.html", context={'movies':page_obj})

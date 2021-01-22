@@ -10,15 +10,18 @@
        <div class="col-lg-8 col-md-10 col-sm-12">
          <div class="card">
            <div class="card-body">
-             <h3 class="card-title">Sign Up</h3>
+             <h3 class="card-title font-weight-bold text-info">Sign Up</h3>
              <form method="post" novalidate>
               {% csrf_token %}
               {% include 'includes/form.html' %}
-              <button type="submit" class="btn btn-primary btn-block">Create an Account</button>
+              <div class="align-center">
+                <button type="submit" class="btn btn-info btn-rounded font-weight-bold">Create an Account</button>
+              </div>
+              
              </form>
            </div>
            <div class="card-footer text-muted text-center">
-            Already have an account? <a href="{% url 'login' %}">Log In</a>
+            Already have an account? <a href="{% url 'login' %}" class="text-decoration-none">Log In</a>
            </div>
          </div>
        </div>

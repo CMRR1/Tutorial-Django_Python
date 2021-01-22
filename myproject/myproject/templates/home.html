@@ -1,5 +1,6 @@
 <!--El tablero, lo que pasa despues del login-->
 {% extends 'base.html' %} {% load static %}<!DOCTYPE html>
+<div style="background: url(../snow.png)" class="page-holder bg-cover"></div>
 
 <html>
   <head>
@@ -7,7 +8,7 @@
     <title>Boards</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
   </head>
-  <body>
+  <body style="background-color:grey">
     <div class="container">
       {% block breadcrumb %}
       <li class="breadcrumb-item active">Boards</li>
@@ -25,7 +26,7 @@
           {% for board in boards %}
           <tr>
             <td>
-              <a href="{% url 'board_topics' board.pk %}">{{ board.name }}</a>
+              <a href="{% url 'board_topics' board.pk %}" class="font-weight-bold .text-info">{{ board.name }}</a>
               <small class="text-muted d-block">{{ board.description }}</small>
             </td>
             <td class="align-middle">{{ board.get_posts_count }}</td>

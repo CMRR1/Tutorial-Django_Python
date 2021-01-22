@@ -14,7 +14,7 @@
 {% block content %}
 
   <div class="mb-4">
-    <a href="{% url 'reply_topic' topic.board.pk topic.pk %}" class="btn btn-primary" role="button">Reply</a>
+    <a href="{% url 'reply_topic' topic.board.pk topic.pk %}" class="btn btn-info font-weight-bold" role="button">Reply</a>
   </div>
   {% for post in topic.posts.all %}
     <div class="card mb-2" {% if forloop.first %}border-dark{% endif %}">
@@ -40,7 +40,7 @@
             {% if post.created_by == user %}
             <div class="mt-3">
                 <a href="{% url 'edit_post' post.topic.board.pk post.topic.pk post.pk %}"
-                   class="btn btn-primary btn-sm"
+                   class="btn btn-info font-weight-bold btn-sm"
                    role="button">Edit</a>
             </div>
             {% endif %}
